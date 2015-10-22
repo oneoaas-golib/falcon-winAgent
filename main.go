@@ -3,6 +3,10 @@ package main
 import (
 	"flag"
 	"fmt"
+	"github.com/ZeaLoVe/falcon-winAgent/cron"
+	"github.com/ZeaLoVe/falcon-winAgent/funcs"
+	"github.com/ZeaLoVe/falcon-winAgent/g"
+	"github.com/ZeaLoVe/falcon-winAgent/http"
 	"os"
 )
 

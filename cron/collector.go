@@ -1,7 +1,7 @@
 package cron
 
 import (
-	"github.com/open-falcon/agent/funcs"
+	"github.com/ZeaLoVe/falcon-winAgent/funcs"
 	"github.com/open-falcon/agent/g"
 	"github.com/open-falcon/common/model"
 	"time"
@@ -9,8 +9,7 @@ import (
 
 func InitDataHistory() {
 	for {
-		funcs.UpdateCpuStat()
-		funcs.UpdateDiskStats()
+		//如果有数据需要两次调用才能采集的，需要在这里提前初始化一次
 		time.Sleep(g.COLLECT_INTERVAL)
 	}
 }
