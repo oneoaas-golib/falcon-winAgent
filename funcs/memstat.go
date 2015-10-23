@@ -44,10 +44,10 @@ func MemMetrics() []*model.MetricValue {
 	}
 
 	return []*model.MetricValue{
-		GaugeValue("win.mem.memtotal", memStatHistory[0].TotalVisibleMemorySize),
-		GaugeValue("win.mem.memused", memStatHistory[0].TotalVisibleMemorySize-memStatHistory[0].FreePhysicalMemory),
-		GaugeValue("win.mem.memfree", memStatHistory[0].FreePhysicalMemory),
-		GaugeValue("win.mem.swapfree", memStatHistory[0].FreeVirtualMemory),
+		GaugeValue("win.mem.memtotal", memStatHistory[0].TotalVisibleMemorySize*1000),
+		GaugeValue("win.mem.memused", (memStatHistory[0].TotalVisibleMemorySize-memStatHistory[0].FreePhysicalMemory)*1000),
+		GaugeValue("win.mem.memfree", memStatHistory[0].FreePhysicalMemory*1000),
+		GaugeValue("win.mem.swapfree", memStatHistory[0].FreeVirtualMemory*1000),
 	}
 
 }

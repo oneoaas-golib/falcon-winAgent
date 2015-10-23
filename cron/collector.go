@@ -10,7 +10,8 @@ import (
 func InitDataHistory() {
 	for {
 		//如果有数据需要两次调用才能采集的，需要在这里提前初始化一次
-		time.Sleep(g.COLLECT_INTERVAL)
+		funcs.UpdateIfStat()
+		time.Sleep(time.Duration(g.Config().Transfer.Interval) * time.Second)
 	}
 }
 

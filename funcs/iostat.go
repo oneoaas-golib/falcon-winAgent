@@ -12,6 +12,7 @@ type Win32_PerfFormattedData_PerfDisk_LogicalDisk struct {
 	Name                 string
 	DiskReadBytesPerSec  int
 	DiskWriteBytesPerSec int
+	PercentFreeSpace     int
 }
 
 var (
