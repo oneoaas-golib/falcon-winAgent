@@ -2,7 +2,7 @@ package http
 
 import (
 	"encoding/json"
-	"github.com/open-falcon/agent/g"
+	"github.com/ZeaLoVe/falcon-winAgent/g"
 	"github.com/open-falcon/common/model"
 	"net/http"
 )

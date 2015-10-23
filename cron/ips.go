@@ -1,7 +1,7 @@
 package cron
 
 import (
-	"github.com/open-falcon/agent/g"
+	"github.com/ZeaLoVe/falcon-winAgent/g"
 	"github.com/open-falcon/common/model"
 	"log"
 	"time"

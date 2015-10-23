@@ -1,7 +1,7 @@
 package http
 
 import (
-	"github.com/open-falcon/agent/g"
+	"github.com/ZeaLoVe/falcon-winAgent/g"
 	"net/http"
 )
 

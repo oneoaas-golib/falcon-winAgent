@@ -10,11 +10,10 @@ import (
 
 // 单位 : B
 type Win32_LogicalDisk struct {
-	Name         string
-	FileSystem   string
-	Size         int
-	FreeSpace    int
-	Availability int
+	Name       string
+	FileSystem string
+	Size       int
+	FreeSpace  int
 }
 
 var (
@@ -49,12 +48,12 @@ func DeviceMetrics() (L []*model.MetricValue) {
 
 	for _, diskstat := range diskStatHistory {
 
-		freePercent := (1.0 * diskstat.FreeSpace) / diskstat.Size
+		freePercent := 100.0 * float64(diskstat.FreeSpace) / float64(diskstat.Size)
 		tags := fmt.Sprintf("mount=%s,fstype=%s", diskstat.Name, diskstat.FileSystem)
 		L = append(L, GaugeValue("win.df.bytes.total", diskstat.Size, tags))
 		L = append(L, GaugeValue("win.df.bytes.used", diskstat.Size-diskstat.FreeSpace, tags))
 		L = append(L, GaugeValue("win.df.bytes.free", diskstat.FreeSpace, tags))
-		L = append(L, GaugeValue("win.df.bytes.used.percent", 100-freePercent, tags))
+		L = append(L, GaugeValue("win.df.bytes.used.percent", 100.0-freePercent, tags))
 		L = append(L, GaugeValue("win.df.bytes.free.percent", freePercent, tags))
 	}
 	return

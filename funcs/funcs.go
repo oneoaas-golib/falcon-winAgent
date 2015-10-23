@@ -1,7 +1,7 @@
 package funcs
 
 import (
-	"github.com/open-falcon/agent/g"
+	"github.com/ZeaLoVe/falcon-winAgent/g"
 	"github.com/open-falcon/common/model"
 )
 
@@ -20,26 +20,10 @@ func BuildMappers() {
 				AgentMetrics,
 				CpuMetrics,
 				NetMetrics,
-				KernelMetrics,
-				LoadAvgMetrics,
 				MemMetrics,
 				DiskIOMetrics,
-				IOStatsMetrics,
-				NetstatMetrics,
-				ProcMetrics,
-			},
-			Interval: interval,
-		},
-		FuncsAndInterval{
-			Fs: []func() []*model.MetricValue{
 				DeviceMetrics,
-			},
-			Interval: interval,
-		},
-		FuncsAndInterval{
-			Fs: []func() []*model.MetricValue{
-				PortMetrics,
-				SocketStatSummaryMetrics,
+				ProcMetrics,
 			},
 			Interval: interval,
 		},

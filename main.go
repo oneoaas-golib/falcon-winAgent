@@ -24,7 +24,7 @@ func main() {
 	}
 
 	if *check {
-		funcs.CheckCollector()
+		//		funcs.CheckCollector()
 		os.Exit(0)
 	}
 
