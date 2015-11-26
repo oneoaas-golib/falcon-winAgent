@@ -4,6 +4,7 @@ import (
 	"github.com/StackExchange/wmi"
 	"github.com/open-falcon/common/model"
 	"log"
+	"strings"
 	"sync"
 )
 
@@ -38,7 +39,7 @@ func UpdateMemStat() error {
 
 func MemMetrics() []*model.MetricValue {
 	err := UpdateMemStat()
-	if err != nil {
+	if err != nil && !strings.Contains(err.Error(), "(<nil>)") {
 		log.Println(err)
 		return nil
 	}

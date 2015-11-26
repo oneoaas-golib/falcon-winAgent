@@ -5,15 +5,15 @@ import (
 	"github.com/StackExchange/wmi"
 	"github.com/open-falcon/common/model"
 	"log"
+	"strings"
 	"sync"
 )
 
 // 单位 : B
 type Win32_LogicalDisk struct {
-	Name       string
-	FileSystem string
-	Size       int
-	FreeSpace  int
+	Name      string
+	Size      int
+	FreeSpace int
 }
 
 var (
@@ -41,15 +41,19 @@ func UpdateDiskStat() error {
 func DeviceMetrics() (L []*model.MetricValue) {
 	err := UpdateDiskStat()
 
-	if err != nil {
+	if err != nil && !strings.Contains(err.Error(), "(<nil>)") {
 		log.Println(err)
 		return
 	}
 
 	for _, diskstat := range diskStatHistory {
-
+		//光驱此处收集到的为0，需要过滤掉
+		//		log.Println("diskSize:", diskstat.Size)
+		if diskstat.Size == 0.0 {
+			continue
+		}
 		freePercent := 100.0 * float64(diskstat.FreeSpace) / float64(diskstat.Size)
-		tags := fmt.Sprintf("mount=%s,fstype=%s", diskstat.Name, diskstat.FileSystem)
+		tags := fmt.Sprintf("mount=%s", diskstat.Name)
 		L = append(L, GaugeValue("win.df.bytes.total", diskstat.Size, tags))
 		L = append(L, GaugeValue("win.df.bytes.used", diskstat.Size-diskstat.FreeSpace, tags))
 		L = append(L, GaugeValue("win.df.bytes.free", diskstat.FreeSpace, tags))

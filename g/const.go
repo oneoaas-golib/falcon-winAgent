@@ -4,10 +4,7 @@ import (
 	"time"
 )
 
-// changelog:
-// 3.1.3: code refactor
-// 3.1.4: bugfix ignore configuration
 const (
-	VERSION          = "3.1.4"
+	VERSION          = "win.1.0.0"
 	COLLECT_INTERVAL = time.Second
 )

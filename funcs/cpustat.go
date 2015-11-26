@@ -4,6 +4,7 @@ import (
 	"github.com/StackExchange/wmi"
 	"github.com/open-falcon/common/model"
 	"log"
+	"strings"
 	"sync"
 )
 
@@ -47,7 +48,7 @@ func CpuIdle() int {
 
 func CpuMetrics() []*model.MetricValue {
 	err := UpdateCpuStat()
-	if err != nil {
+	if err != nil && !strings.Contains(err.Error(), "(<nil>)") {
 		log.Println(err)
 		return nil
 	}

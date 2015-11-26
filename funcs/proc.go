@@ -46,7 +46,7 @@ func ProcMetrics() (L []*model.MetricValue) {
 
 	err := UpdateProcStat()
 	//wmi获取数据时候转化nil到string会抛出错误，这个错误忽略掉
-	if err != nil && !strings.Contains(err.Error(), "unsupported type") {
+	if err != nil && !strings.Contains(err.Error(), "(<nil>)") {
 		log.Println(err)
 		return
 	}
@@ -61,7 +61,7 @@ func ProcMetrics() (L []*model.MetricValue) {
 			}
 		}
 
-		L = append(L, GaugeValue("proc.num", cnt, tags))
+		L = append(L, GaugeValue("win.proc.num", cnt, tags))
 	}
 
 	return

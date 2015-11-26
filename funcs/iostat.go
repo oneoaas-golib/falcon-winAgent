@@ -4,6 +4,7 @@ import (
 	"github.com/StackExchange/wmi"
 	"github.com/open-falcon/common/model"
 	"log"
+	"strings"
 	"sync"
 )
 
@@ -40,7 +41,7 @@ func UpdateIoStat() error {
 func DiskIOMetrics() (L []*model.MetricValue) {
 
 	err := UpdateIoStat()
-	if err != nil {
+	if err != nil && !strings.Contains(err.Error(), "(<nil>)") {
 		log.Println(err)
 		return
 	}
